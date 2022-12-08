@@ -1,0 +1,52 @@
+[
+  {
+    "title": "Card 1",
+    "size": 5,
+    "numberOfColours": 10
+  },
+  {
+    "title": "Card 2",
+    "size": 10,
+    "numberOfColours": 5
+  },
+  {
+    "title": "Card 3",
+    "size": 6,
+    "numberOfColours": 7
+  },
+  {
+    "title": "Card 4",
+    "size": 3,
+    "numberOfColours": 11
+  },
+  {
+    "title": "Card 5",
+    "size": 4,
+    "numberOfColours": 4
+  },
+  {
+    "title": "Card 6",
+    "size": 15,
+    "numberOfColours": 4
+  },
+  {
+    "title": "Card 7",
+    "size": 3,
+    "numberOfColours": 12
+  },
+  {
+    "title": "Card 8",
+    "size": 2,
+    "numberOfColours": 2
+  },
+  {
+    "title": "Card 9",
+    "size": 3,
+    "numberOfColours": 2
+  },
+  {
+    "title": "Card 10",
+    "size": 3,
+    "numberOfColours": 12
+  }
+]

@@ -1,10 +1,9 @@
 {
-  "extends": [
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:prettier/recommended"
-  ],
+  "extends": ["prettier"],
+  "plugins": ["prettier"],
   "rules": {
-    "@typescript-eslint/no-unused-vars": "error"
+    "prettier/prettier": "error",
+    "arrow-body-style": "off",
+    "prefer-arrow-callback": "off"
   }
 }

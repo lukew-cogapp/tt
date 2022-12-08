@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import './App.css';
 import Card from './components/Card';
+import Footer from './components/Footer';
 import cards from './data.json';
+import PlaceHolderCard from './components/PlaceHolderCard';
 const PLAYER_1_WIN = 'Player 1 wins';
 const PLAYER_2_WIN = 'Player 2 wins';
 const DRAW = 'Draw';
 const UNSTARTED = 'Who will win!?';
-const GAME_OVER = 'GG';
 const CLOUDINARY_URL =
   'https://res.cloudinary.com/mitmuseum/image/upload/t_800/media-internal/';
 
@@ -85,19 +86,19 @@ const App = () => {
     if (deckPlayer1.length === 0 && deckPlayer2.length === 0) {
       setGameOver(true);
       setGameOverText(DRAW);
-      setWinnerString(GAME_OVER);
+      setWinnerString(null);
     } else if (deckPlayer1.length === 0) {
       setGameOver(true);
       setGameOverText(
         `${PLAYER_2_WIN} with ${deckPlayer2.length} cards in their deck`
       );
-      setWinnerString(GAME_OVER);
+      setWinnerString(null);
     } else if (deckPlayer2.length === 0) {
       setGameOver(true);
       setGameOverText(
         `${PLAYER_1_WIN} with ${deckPlayer1.length} cards in their deck`
       );
-      setWinnerString(GAME_OVER);
+      setWinnerString(null);
     }
   }, [
     selectedProperty,
@@ -144,10 +145,12 @@ const App = () => {
   return (
     <div className="App">
       <h1 className="h1">Top Trumps</h1>
-      {!!gameOver && <p className="bodyText">GAME OVER</p>}
-      {!!gameOverText && <p className="bodyText">{gameOverText}</p>}
+      {!!gameOver && <h2 className="h2">GAME OVER</h2>}
+      {!!gameOverText && (
+        <p className="bodyText font-semibold">{gameOverText}</p>
+      )}
       {!gameOver && (
-        <div>
+        <div className="flex justify-center">
           {playerTurn === 1 && (
             <div>
               <h2 className="h2">Player 1 😀 turn</h2>
@@ -167,6 +170,7 @@ const App = () => {
               )}
             </div>
           )}
+          <PlaceHolderCard />
           {playerTurn === 2 && (
             <div>
               <h2 className="h2">Player 2 🎃 turn</h2>
@@ -203,14 +207,10 @@ const App = () => {
           </button>
         </div>
       )}
-      <footer className="bottom-0 left-0 z-20 p-4 w-full bg-white border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:p-6">
-        <span className="bodyText">
-          Player 1 cards remaining: {deckPlayer1.length}
-        </span>
-        <span className="bodyText">
-          Player 2 cards remaining: {deckPlayer2.length}
-        </span>
-      </footer>
+      <Footer
+        deckPlayer1Length={deckPlayer1.length}
+        deckPlayer2Length={deckPlayer2.length}
+      />
     </div>
   );
 };

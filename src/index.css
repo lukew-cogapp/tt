@@ -1,4 +1,8 @@
-body {
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -10,13 +14,52 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
+} */
 
-.card {
+/* .card {
   border: 1px solid black;
-}
+} */
 
 .card.hidden {
   /* border: 1px solid red; */
   display: none;
+}
+
+/* body {
+  @apply bg-slate-300;
+} */
+
+.btn {
+  @apply font-bold py-2 px-4 mx-1 rounded;
+}
+.btn-primary {
+  background-color: #ff40b6;
+  @apply text-white;
+}
+.btn-primary:hover {
+  background-color: #9f1e6e;
+}
+
+.btn-secondary {
+  background-color: #aa2ddc;
+  @apply text-white;
+}
+.btn-secondary:hover {
+  background-color: #61177f;
+}
+
+.h1 {
+  @apply text-5xl font-normal leading-normal mt-0 mb-2;
+}
+
+.h2 {
+  @apply text-3xl font-normal leading-normal mt-0 mb-2;
+}
+
+.h3 {
+  @apply text-2xl font-normal leading-normal mt-0 mb-2;
+}
+
+.bodyText {
+  @apply text-gray-700 text-base;
 }

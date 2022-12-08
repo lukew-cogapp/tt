@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
-import "./App.css";
-import Card from "./components/Card";
-import cards from "./data.json";
-const PLAYER_1_WIN = "Player 1 wins";
-const PLAYER_2_WIN = "Player 2 wins";
-const DRAW = "Draw";
-const UNSTARTED = "Who will win!?";
+import { useEffect, useState } from 'react';
+import './App.css';
+import Card from './components/Card';
+import cards from './data.json';
+const PLAYER_1_WIN = 'Player 1 wins';
+const PLAYER_2_WIN = 'Player 2 wins';
+const DRAW = 'Draw';
+const UNSTARTED = 'Who will win!?';
+const GAME_OVER = 'GG';
+const CLOUDINARY_URL =
+  'https://res.cloudinary.com/mitmuseum/image/upload/t_800/media-internal/';
 
 const pickCard = (deck) => {
   return deck[0];
-  // return deck[Math.floor(Math.random() * deck.length)];
 };
 
 const shuffle = (arr) => {
@@ -20,16 +22,24 @@ const shuffle = (arr) => {
   return arr;
 };
 
+const cloudinaryURL = (id) => {
+  if (id) {
+    return `${CLOUDINARY_URL}${id}.jpg`;
+  } else {
+    return null;
+  }
+};
+
 const App = () => {
   const [playerTurn, setPlayerTurn] = useState(1);
   const [winner, setWinner] = useState();
   const [winnerString, setWinnerString] = useState(UNSTARTED);
-  const [shuffledDeck, setShuffledDeck] = useState(shuffle(cards));
+  const [shuffledDeck] = useState(shuffle(cards));
   const [selectedProperty, setSelectedProperty] = useState();
-  const [deckPlayer1, setDeckPlayer1] = useState(
+  const [deckPlayer1] = useState(
     shuffledDeck.slice(0, Math.ceil(shuffledDeck.length / 2))
   );
-  const [deckPlayer2, setDeckPlayer2] = useState(
+  const [deckPlayer2] = useState(
     shuffledDeck.slice(-Math.ceil(shuffledDeck.length / 2))
   );
   const [firstCardPlayer1, setFirstCardPlayer1] = useState(
@@ -41,17 +51,8 @@ const App = () => {
   const [gameOver, setGameOver] = useState(false);
   const [gameOverText, setGameOverText] = useState();
 
-  const playerState = (player) => {
-    if (playerTurn === 1 && player === 1) {
-      return "active";
-    } else if (playerTurn === 2 && player === 2) {
-      return "active";
-    } else {
-      return "hidden";
-    }
-  };
-
   useEffect(() => {
+    document.title = 'Top Trumps';
     if (selectedProperty) {
       let opposingCard;
       if (playerTurn === 1) {
@@ -84,16 +85,19 @@ const App = () => {
     if (deckPlayer1.length === 0 && deckPlayer2.length === 0) {
       setGameOver(true);
       setGameOverText(DRAW);
+      setWinnerString(GAME_OVER);
     } else if (deckPlayer1.length === 0) {
       setGameOver(true);
       setGameOverText(
         `${PLAYER_2_WIN} with ${deckPlayer2.length} cards in their deck`
       );
+      setWinnerString(GAME_OVER);
     } else if (deckPlayer2.length === 0) {
       setGameOver(true);
       setGameOverText(
         `${PLAYER_1_WIN} with ${deckPlayer1.length} cards in their deck`
       );
+      setWinnerString(GAME_OVER);
     }
   }, [
     selectedProperty,
@@ -121,10 +125,6 @@ const App = () => {
       default:
         break;
     }
-    console.log("DECK1");
-    console.log(deckPlayer1);
-    console.log("DECK2");
-    console.log(deckPlayer2);
     nextTurn();
   };
 
@@ -143,48 +143,74 @@ const App = () => {
 
   return (
     <div className="App">
-      {!!gameOver && <p>GAME OVER</p>}
-      {!!gameOverText && <p>{gameOverText}</p>}
+      <h1 className="h1">Top Trumps</h1>
+      {!!gameOver && <p className="bodyText">GAME OVER</p>}
+      {!!gameOverText && <p className="bodyText">{gameOverText}</p>}
       {!gameOver && (
         <div>
           {playerTurn === 1 && (
             <div>
-              <h2>Player 1</h2>
+              <h2 className="h2">Player 1 😀 turn</h2>
+
               {!!firstCardPlayer1 && (
-                <Card
-                  title={firstCardPlayer1.title}
-                  size={firstCardPlayer1.size}
-                  numberOfColours={firstCardPlayer1.numberOfColours}
-                  setSelectedProperty={setSelectedProperty}
-                  selectedProperty={selectedProperty}
-                  cardState={playerState(1)}
-                />
+                <div className="flex justify-center">
+                  <Card
+                    title={firstCardPlayer1.title}
+                    size={firstCardPlayer1.size}
+                    numberOfColours={firstCardPlayer1.numberOfColours}
+                    setSelectedProperty={setSelectedProperty}
+                    selectedProperty={selectedProperty}
+                    imageURL={cloudinaryURL(firstCardPlayer1.objectID)}
+                    bodyText={firstCardPlayer1.description}
+                  />
+                </div>
               )}
             </div>
           )}
           {playerTurn === 2 && (
             <div>
-              <h2>Player 2</h2>
+              <h2 className="h2">Player 2 🎃 turn</h2>
               {!!firstCardPlayer2 && (
-                <Card
-                  title={firstCardPlayer2.title}
-                  size={firstCardPlayer2.size}
-                  numberOfColours={firstCardPlayer2.numberOfColours}
-                  setSelectedProperty={setSelectedProperty}
-                  selectedProperty={selectedProperty}
-                  cardState={playerState(2)}
-                />
+                <div className="flex justify-center">
+                  <Card
+                    title={firstCardPlayer2.title}
+                    size={firstCardPlayer2.size}
+                    numberOfColours={firstCardPlayer2.numberOfColours}
+                    setSelectedProperty={setSelectedProperty}
+                    selectedProperty={selectedProperty}
+                    imageURL={cloudinaryURL(firstCardPlayer2.objectID)}
+                    bodyText={firstCardPlayer2.description}
+                  />
+                </div>
               )}
             </div>
           )}
-          {!!winnerString && <p>{winnerString}</p>}
-          {!!selectedProperty && (
-            <button type="button" onClick={() => handleContinue()}>
-              Continue
-            </button>
-          )}
         </div>
       )}
+      {!!winnerString && (
+        <div className="flex my-4 justify-center">
+          <p className="bodyText">{winnerString}</p>
+        </div>
+      )}
+      {!!selectedProperty && (
+        <div className="flex m-4 justify-center">
+          <button
+            className="btn btn-secondary"
+            type="button"
+            onClick={() => handleContinue()}
+          >
+            Continue
+          </button>
+        </div>
+      )}
+      <footer className="bottom-0 left-0 z-20 p-4 w-full bg-white border-t border-gray-200 shadow md:flex md:items-center md:justify-between md:p-6">
+        <span className="bodyText">
+          Player 1 cards remaining: {deckPlayer1.length}
+        </span>
+        <span className="bodyText">
+          Player 2 cards remaining: {deckPlayer2.length}
+        </span>
+      </footer>
     </div>
   );
 };

@@ -1,28 +1,38 @@
 [
   {
-    "title": "Card 1",
+    "title": "Rolling Murderer robot",
     "size": 5,
-    "numberOfColours": 10
+    "numberOfColours": 10,
+    "description": "This robot, \"Rolling Murderer\", was built by Deren Hansen for course 2.70, \"Introduction to Design\", in Fall 1981.",
+    "objectID": "1983.075.002-003-1"
   },
   {
-    "title": "Card 2",
+    "title": "Nat with cat",
     "size": 10,
-    "numberOfColours": 5
+    "numberOfColours": 5,
+    "description": "Nat with cat",
+    "objectID": "2003.007.0089"
   },
   {
-    "title": "Card 3",
+    "title": "Horse",
     "size": 6,
-    "numberOfColours": 7
+    "numberOfColours": 7,
+    "description": "Greenish-blue image of a horse (animal) standing in front of a dead tree.",
+    "objectID": "MOH-1993_47_007"
   },
   {
-    "title": "Card 4",
+    "title": "Southampton Goat.",
     "size": 3,
-    "numberOfColours": 11
+    "numberOfColours": 11,
+    "description": "Southampton Goat.",
+    "objectID": "WB.1.04084"
   },
   {
-    "title": "Card 5",
+    "title": "High-speed photography, bullet and banana - 1978",
     "size": 4,
-    "numberOfColours": 4
+    "numberOfColours": 4,
+    "description": "High-speed photograph of a bullet piercing a banana, at 1400 meters per second; 1978.",
+    "objectID": "HEE-NC-64001"
   },
   {
     "title": "Card 6",

@@ -1,9 +1,12 @@
 const Card = ({
-  title,
-  size,
-  numberOfColours,
+  name,
+  cost,
+  dateMade,
+  lengthOverall,
+  displacement,
+  hullNumber,
+  beam,
   setSelectedProperty,
-  selectedProperty,
   imageURL,
   bodyText,
 }) => {
@@ -25,28 +28,62 @@ const Card = ({
         ></img>
       )}
       <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2">{title}</div>
+        <div className="font-bold text-xl mb-2">{name}</div>
+        <p className="bodyText">{dateMade}</p>
         <p className="bodyText">{bodyText}</p>
       </div>
-      <div className="inline-flex">
-        <button
-          className="btn btn-primary"
-          type="button"
-          onClick={() => handleButton('size', size)}
-        >
-          Size: {size}
-        </button>
-        <button
-          className="btn btn-primary"
-          type="button"
-          onClick={() => handleButton('numberOfColours', numberOfColours)}
-        >
-          Number of colours: {numberOfColours}
-        </button>
+      <div className="flex-col mx-4">
+        <div className="flex md:justify-between">
+          <p class="bodyText large">Cost</p>
+          <button
+            className="btn btn-primary"
+            type="button"
+            onClick={() => handleButton('cost', cost)}
+          >
+            ${cost}
+          </button>
+        </div>
+        <div className="flex md:justify-between">
+          <p class="bodyText large">Length</p>
+          <button
+            className="btn btn-primary"
+            type="button"
+            onClick={() => handleButton('lengthOverall', lengthOverall)}
+          >
+            {lengthOverall} feet
+          </button>
+        </div>
+        <div className="flex md:justify-between">
+          <p class="bodyText large">Displacement</p>
+          <button
+            className="btn btn-primary"
+            type="button"
+            onClick={() => handleButton('displacement', displacement)}
+          >
+            {displacement} tons
+          </button>
+        </div>
+        <div className="flex md:justify-between">
+          <p class="bodyText large">Beam</p>
+          <button
+            className="btn btn-primary"
+            type="button"
+            onClick={() => handleButton('beam', beam)}
+          >
+            {beam} feet
+          </button>
+        </div>
+        <div className="flex md:justify-between">
+          <p class="bodyText large">Hull number</p>
+          <button
+            className="btn btn-primary"
+            type="button"
+            onClick={() => handleButton('hullNumber', hullNumber)}
+          >
+            {hullNumber}
+          </button>
+        </div>
       </div>
-      {/* {!!selectedProperty && <p>
-        Selected property: {selectedProperty.label} {selectedProperty.value}
-      </p>} */}
     </div>
   );
 };

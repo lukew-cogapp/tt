@@ -30,7 +30,7 @@ code {
 } */
 
 .btn {
-  @apply font-bold py-2 px-4 mx-1 rounded;
+  @apply font-bold py-2 px-4 m-1 rounded;
 }
 .btn-primary {
   background-color: #ff40b6;
@@ -62,4 +62,8 @@ code {
 
 .bodyText {
   @apply text-gray-700 text-base;
+}
+
+.large {
+  @apply text-2xl;
 }
